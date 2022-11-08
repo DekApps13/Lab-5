@@ -1,0 +1,13 @@
+<?php 
+    require_once("controllers/principal_controller.php");
+    require_once("controllers/contacto_controller.php");
+    require_once("utils/seg.php");
+
+    if(count($_GET)==0)
+        call_user_func("principal_controller::index");
+    else{
+        $controller= seg::decodificar( $_GET["t"]);
+        $method= seg::decodificar( $_GET["met"]);
+        call_user_func($controller."_controller::".$method);
+    }
+?>
